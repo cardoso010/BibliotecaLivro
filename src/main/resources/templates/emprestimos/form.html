@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	<nav layout:fragment="header" aria-label="breadcrumb" role="navigation">
+	  <ol class="breadcrumb">
+	    <li class="breadcrumb-item"><a href="#" th:href="@{/emprestimos/list}">Emprestimos</a></li>
+	    <li class="breadcrumb-item active" aria-current="page">Novo Emprestimo</li>
+	  </ol>
+	</nav>
+
+	<div layout:fragment="content" class="container">
+	
+		<form id="livroForm" th:action="@{/emprestimos/(form)}" method="post" th:object="${emprestimo}" action="#" >
+		
+				<input type="hidden"  th:field="*{id}" />
+			    
+			    <div class="form-group row">
+					<label for="dataDevolucao" class="col-sm-2 col-form-label">Data de devolução</label>
+					<div class="col-sm-10">
+						<input type="date" th:field="*{dataDevolucao}" class="form-control-plaintext" id="dataDevolucao" />
+		      			<span  th:if="${#fields.hasErrors('dataDevolucao')}" th:errors="*{dataDevolucao}">Data de devolução Error</span>
+		    			</div>
+				</div>
+	    			
+	    			<div class="form-group row">
+		    			<label for="dataEmprestimo" class="col-sm-2 col-form-label">Data de emprestimo</label>
+					<div class="col-sm-10">
+						<input type="date" th:field="*{dataEmprestimo}" class="form-control-plaintext" id="dataEmprestimo" />
+		      			<span  th:if="${#fields.hasErrors('dataEmprestimo')}" th:errors="*{dataEmprestimo}">Data de emprestimo Error</span>
+		    			</div>
+		    		</div>
+	    			
+	    			<div class="form-group row">
+		    			<label for="staticLivro" class="col-sm-2 col-form-label">Livro</label>
+					<div class="col-sm-10">
+					    <select th:field="*{livro}">
+						  	<option th:each="livro : ${livros}"  th:value="${livro.id}" th:text="${livro.nome}">Livro</option>
+						</select>
+				    </div>
+				</div>
+				
+			    <div class="form-group row">
+				    <label for="staticCliente" class="col-sm-2 col-form-label">Cliente</label>
+					<div class="col-sm-10">
+					    <select th:field="*{cliente}">
+						  	<option th:each="cliente : ${clientes}"  th:value="${cliente.id}" th:text="${cliente.nome}">Cliente</option>
+						</select>
+				    </div>
+				</div>
+	    			
+    				<button type="submit" class="btn btn-primary">gravar</button>
+			
+			</div>
+		</form>
+	</div>
+	
+</body>
+</html>

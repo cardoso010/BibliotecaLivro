@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	
+	<h1 layout:fragment="header">
+		<a th:href="@{/reviews/novo}"  class="btn btn-sm btn-info"><i class="glyphicon glyphicon-plus"></i></a>
+		Reviews
+	</h1>
+
+	<div layout:fragment="content" class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Avaliação</th>
+					<th scope="col">Comentários</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="review : ${reviews}">
+					<th scope="row" th:text="${review.id}">1</th>
+					<td><a href="#" th:href="@{'/reviews/'+${review.id}}" th:text="${review.avaliacao}"> Avaliação </a></td>
+					<td><a href="#" th:href="@{'/reviews/'+${review.id}}" th:text="${review.comentario}"> Comentários </a></td>
+					<td><a href="#" th:href="@{'/reviews/alterar/'+${review.id}}"> Altera </a></td>
+					<td><a href="#" th:href="@{'/reviews/excluir/'+${review.id}}"> Excluir </a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

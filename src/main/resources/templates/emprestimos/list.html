@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+</head>
+<body>
+	
+	<h1 layout:fragment="header">
+		<a th:href="@{/emprestimos/novo}"  class="btn btn-sm btn-info"><i class="glyphicon glyphicon-plus"></i></a>
+		Emprestimos
+	</h1>
+
+	<div layout:fragment="content" class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Data devolução</th>
+					<th scope="col">Data emprestimo</th>
+					<th scope="col">Título livro</th>
+					<th scope="col">Cliente</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emprestimo : ${emprestimos}">
+					<th scope="row" th:text="${emprestimo.id}">1</th>
+					<td><a href="#" th:href="@{'/emprestimos/'+${emprestimo.id}}" th:text="${emprestimo.dataDevolucao}"> Data devolução </a></td>
+					<td><a href="#" th:href="@{'/emprestimos/'+${emprestimo.id}}" th:text="${emprestimo.dataEmprestimo}"> Data emprestimo </a></td>
+					<td><a href="#" th:href="@{'/emprestimos/'+${emprestimo.id}}" th:text="${emprestimo.livro.nome}"> Título livro </a></td>
+					<td><a href="#" th:href="@{'/emprestimos/'+${emprestimo.id}}" th:text="${emprestimo.cliente.nome}"> Cliente </a></td>
+					<td><a href="#" th:href="@{'/emprestimos/alterar/'+${emprestimo.id}}"> Altera </a></td>
+					<td><a href="#" th:href="@{'/emprestimos/excluir/'+${emprestimo.id}}"> Devolver </a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

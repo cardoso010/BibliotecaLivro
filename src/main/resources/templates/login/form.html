@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<meta charset="UTF-8" />
+	<title>Login biblioteca</title>
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.css}" />
+</head>
+<body>
+
+	<form id="loginForm" th:action="@{/login/autentication}" th:object="${loginForm}" action="#" method="post">
+		<span>Username:</span>
+		<input type="text" th:field="*{username}" class="form-control-plaintext" />
+		<span  th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Nome Error</span><br/>
+		
+		<span>Password:</span>
+		<input type="password" th:field="*{password}" class="form-control-plaintext" />
+		<span  th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Nome Error</span><br/>
+		
+		<input type="submit" name="login" value="login" />
+	</form>
+
+</body>
+</html>
